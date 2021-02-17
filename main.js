@@ -1,8 +1,11 @@
-const meals = 
-[{name:'meat',vegetarian:false},{name:'grass',vegetarian:true},{name:'plants',vegetarian:true}]
+const username = Symbol('username');
+const password = Symbol('password');
 
-const vegMeals = meals.filter(({vegetarian}) =>{
-    return vegetarian;
-})
+const user = {
+    [username]: 'osid',
+    [password]: '1234',
+    age: 20
+};
 
-console.log(vegMeals);
+console.log(user.username);
+console.log(user.password);
