@@ -1,11 +1,23 @@
-const username = Symbol('username');
-const password = Symbol('password');
+let hours = 0;
+let minutes = 0;
+let seconds = 0;
 
-const user = {
-    [username]: 'osid',
-    [password]: '1234',
-    age: 20
-};
+const tickCallBack = function tickCallBack(){
+    seconds++;
+    if(seconds === 60){
+        seconds = 0;
+        minutes++;
+        if(minutes === 60){
+            minutes = 0;
+            hours++;
+            if(hours === 24){hours = 0;}
+        }
+    }
+    console.log(`${(isDoubleDigit(hours)) ? hours : '0'+hours}:${(isDoubleDigit(minutes)) ? minutes : '0'+minutes}:${(isDoubleDigit(seconds)) ? seconds : '0'+seconds}`);
+}
 
-console.log(user.username);
-console.log(user.password);
+function isDoubleDigit(time){
+    return (time > 9) ? true : false;
+}
+
+const interval=  setInterval(tickCallBack,1000);
