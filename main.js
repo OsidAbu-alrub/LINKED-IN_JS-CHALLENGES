@@ -1,23 +1,25 @@
-let hours = 0;
-let minutes = 0;
-let seconds = 0;
 
-const tickCallBack = function tickCallBack(){
-    seconds++;
-    if(seconds === 60){
-        seconds = 0;
-        minutes++;
-        if(minutes === 60){
-            minutes = 0;
-            hours++;
-            if(hours === 24){hours = 0;}
-        }
+function getStudents(classroom){
+    if(classroom.hasTeachingAssistant){
+        const {people:[,,...students]} = classroom
+        return students;
     }
-    console.log(`${(isDoubleDigit(hours)) ? hours : '0'+hours}:${(isDoubleDigit(minutes)) ? minutes : '0'+minutes}:${(isDoubleDigit(seconds)) ? seconds : '0'+seconds}`);
+    else{
+        const {people:[,...students]} = classroom
+        return students;
+    }
 }
 
-function isDoubleDigit(time){
-    return (time > 9) ? true : false;
-}
+const classroom = {
+    hasTeachingAssistant:true,
+    people: ['teacher','teaching assistant','john1','john2','john2','john2']
+} // first is teacher, second is TA (if hasTeachingAssistant === true), rest are students
 
-const interval=  setInterval(tickCallBack,1000);
+
+const classroom1 = {
+    hasTeachingAssistant:false,
+    people: ['teacher','teaching assistant','john1','john2','john2','john2']
+} // first is teacher, second is TA (if hasTeachingAssistant === true), rest are students
+
+console.log(getStudents(classroom));
+console.log(getStudents(classroom1));
